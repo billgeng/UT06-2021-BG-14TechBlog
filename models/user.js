@@ -1,4 +1,4 @@
-const {Model, Datatypes } = require('sequelize');
+const {Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
 const { before } = require('lodash');
@@ -12,38 +12,35 @@ class User extends Model{
 User.init (
     {
         id: {
-            type: Datatypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull:false,
             primaryKey:true,
             autoIncrement: true,            
         },
         username:{
-            type:Datatypes.STRING,
+            type:DataTypes.STRING,
             allowNull:false,
         },
         email: {
-            type:Datatypes.STRING,
+            type:DataTypes.STRING,
             allowNull:false,
             validate:{isEmail:true},
             unique:true,
         },
         password:{
-            type:Datatypes.STRING,
+            type:DataTypes.STRING,
             allowNull:false,
             validate:{len:[8]},
         },
     },
     {
         hooks: {
-           async beforeCreate: (newUser) {
+           async beforeCreate(newUser) {
                 newUser.password = await bcrypt.hash(newUser.password,10);
                 return newUser;
             } ,
           async beforeUpdate(updateUser) {
-              updateUser.password = await bcrypt.hash(
-                  updateUser.password,
-                  10
-              );
+              updateUser.password = await bcrypt.hash(updateUser.password,10);
               return updateUser;
           },
         },
