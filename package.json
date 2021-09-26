@@ -1,5 +1,5 @@
 {
-  "name": "UT06-2021-BG-14TechBlog",
+  "name": "ut06-2021-bg-14techblog",
   "version": "1.0.0",
   "description": "14. Model-View-Controller (MVC) Challenge: Tech Blog",
   "main": "server.js",
@@ -12,10 +12,22 @@
     "url": "git+https://github.com/billgeng/UT06-2021-BG-14TechBlog.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Bill Geng",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/billgeng/UT06-2021-BG-14TechBlog/issues"
   },
-  "homepage": "https://github.com/billgeng/UT06-2021-BG-14TechBlog#readme"
+  "homepage": "https://github.com/billgeng/UT06-2021-BG-14TechBlog#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "express-session": "^1.17.2",
+    "handlebars": "^4.7.7",
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.6.5",
+    "session": "^0.1.0"
+  }
 }
