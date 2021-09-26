@@ -1,0 +1,21 @@
+{
+  "name": "UT06-2021-BG-14TechBlog",
+  "version": "1.0.0",
+  "description": "14. Model-View-Controller (MVC) Challenge: Tech Blog",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/billgeng/UT06-2021-BG-14TechBlog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/billgeng/UT06-2021-BG-14TechBlog/issues"
+  },
+  "homepage": "https://github.com/billgeng/UT06-2021-BG-14TechBlog#readme"
+}

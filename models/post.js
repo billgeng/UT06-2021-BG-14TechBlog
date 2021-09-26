@@ -15,7 +15,7 @@ Post.init (
             tpye: Datatypes.STRING,
             allowNull:false
         },
-        body:{
+        content:{
             type: Datatypes.STRING,
             allowNull:false
         },
