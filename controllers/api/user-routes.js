@@ -41,11 +41,7 @@ router.get('/:id',(req,res) =>{
                    attributes: ['title']
                }
            },
-           {
-               model : Post,
-               as:'post',
-               attributes: ['title'],
-           }
+          
        ]
    })
    .then ((userData)=> {

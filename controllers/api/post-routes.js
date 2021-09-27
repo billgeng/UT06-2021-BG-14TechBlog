@@ -6,12 +6,12 @@ const withAuth = require('../../utils/auth');
 router.get('/', (req, res) => {
     Post.findAll({
       
-            attributes: ['id','title','content','user_id'],
+            attributes: ['id','title','content','user_id','created_at'],
             include: [
                 {
                     model: Comment,
                     as: 'comment',
-                    attributes: ['id', 'comment_text', 'post_id', 'user_id'],
+                    attributes: ['id', 'comment_text', 'post_id', 'user_id','created_at'],
                     include:{
                         
                             model: User,
@@ -44,13 +44,13 @@ router.get('/:id', (req, res) => {
             attributes: ['id',
                 'content',
                 'title',
-                'user_id'
+                'created_at'
                 ],
             include: [
                 {
                     model: Comment,
                     as:'comment',
-                    attributes: ['id', 'comment_text', 'post_id', 'user_id'],
+                    attributes: ['id', 'comment_text', 'post_id', 'user_id','created_at'],
                     include:{
                         model: User,
                         attributes:['username'],
@@ -111,6 +111,7 @@ router.put('/:id', withAuth, (req, res) => {
             res.status(500).json(err);
         });
 });
+
 router.delete('/:id', withAuth, (req, res) => {
     Post.destroy({
         where: {
