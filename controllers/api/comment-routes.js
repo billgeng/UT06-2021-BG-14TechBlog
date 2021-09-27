@@ -1,18 +1,9 @@
 const router = require('express').Router();
-const { Comment } = require('../../models');
+const { User,Post,Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
-    Comment.findAll({
-        attributes:['id','comment_text','user_id','post_id'],
-        include: [
-            {
-                model: User,
-                as:'user',
-                attributes:['username'],
-            },
-        ],
-    })
+    Comment.findAll({})
         .then(dbCommentData => res.json(dbCommentData))
         .catch(err => {
             console.log(err);
@@ -25,7 +16,7 @@ router.get('/:id', (req, res) => {
             where: {
                 id: req.params.id
             },
-            attributes:['id','comment_text','user_id','post_id'],
+            attributes:['id','comment_text','user_id','post_id','created_at'],
             include:[
                 {
                     model: User,
@@ -59,7 +50,8 @@ router.post('/', withAuth, (req, res) => {
 router.put('/:id', withAuth, (req, res) => {
     Comment.update({
         comment_text: req.body.comment_text
-    }, {
+    }, 
+    {
         where: {
             id: req.params.id
         }
