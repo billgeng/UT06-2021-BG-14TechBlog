@@ -4,7 +4,7 @@ const path = require('path');
 const controller = require('./controllers');
 const helpers = require('./utils/helpers');
 const exphbs  = require('express-handlebars');
-const hbs = exphbs.create({helpers});
+const hbs = exphbs.create({defaultLayout:'main',helpers:helpers});
 const sequelize = require('./config/connection');
 
 const session = require('express-session');
