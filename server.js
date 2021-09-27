@@ -2,9 +2,9 @@ const express = require('express');
 const path = require('path');
 
 const controller = require('./controllers');
-const helpers = require('./utils/helpers');
+
 const exphbs  = require('express-handlebars');
-const hbs = exphbs.create({helpers});
+
 const sequelize = require('./config/connection');
 
 const session = require('express-session');
@@ -31,7 +31,7 @@ app.use(session(sess));
 
 app.use('/',controller);
 
-app.engine('handlebars',hbs.engine);
+app.engine('handlebars',exphbs());
 app.set('view engine','handlebars');
 
 sequelize.sync({force: false}).then(()=>{
