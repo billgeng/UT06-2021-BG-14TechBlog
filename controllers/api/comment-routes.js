@@ -42,7 +42,8 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', withAuth, (req, res) => {
-      Comment.create({
+    
+        Comment.create({
                 comment_text: req.body.comment_text,
                 post_id: req.body.post_id,
                 user_id: req.session.user_id,
@@ -90,5 +91,4 @@ router.delete('/:id', withAuth, (req, res) => {
         res.status(500).json(err);
     });
 });
-
 module.exports = router;

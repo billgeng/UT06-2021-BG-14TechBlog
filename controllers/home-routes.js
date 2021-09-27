@@ -16,12 +16,8 @@ router.get('/',(req,res) =>{
          {
              model: Comment,
              as: 'comment',
-             attributes: ['id','comment_text','post_id','user_id','created_at'],
-             include:{
-                 model: User,
-                 as:'user',
-                 attributes:['username']
-             }
+             attributes: ['id','comment_text','post_id','user_id'],
+             
          }
      ]
     }) .then((postData) =>{
@@ -60,11 +56,7 @@ router.get('/post/:id',(req,res)=>{
                 model: Comment,
                 as:'comment',
                 attributes:['id','comment_text','post_id','user_id','created_at'],
-                include:{
-                    model: User,
-                    as: 'user',
-                    attributes:['username']
-                }
+                
             },
             {
                 model: User,
@@ -103,11 +95,7 @@ router.get('/post-comments',(req,res)=>{
                 model: Comment,
                 as: 'comment',
                 attributes:['id','comment_text','post_id','user_id','created_at'],
-                include:{
-                    model: User,
-                    as:'user',
-                    attributes:['username']
-                }
+                
             },
             {
                 model: User,
