@@ -6,18 +6,27 @@ const withAuth = require('../../utils/auth');
 router.get('/', (req, res) => {
     Post.findAll({
       
-            attributes: ['id','title','content'],
-            include: [{
-                    model: User,
-                    as: 'user',
-                    attributes: ['username']
-                },
+            attributes: ['id','title','content','user_id'],
+            include: [
                 {
                     model: Comment,
                     as: 'comment',
                     attributes: ['id', 'comment_text', 'post_id', 'user_id'],
+                    include:{
+                        
+                            model: User,
+                            as:'user',
+                            attributes: ['username']
+                        
+                    },
                     
-                }
+                },
+                {
+                    model: User,
+                    as:'user',
+                    attributes: ['username']
+                },
+               
             ]
         })
         .then(dbPostData => res.json(dbPostData.reverse()))
@@ -35,18 +44,24 @@ router.get('/:id', (req, res) => {
             attributes: ['id',
                 'content',
                 'title',
+                'user_id'
                 ],
-            include: [{
-                    model: User,
-                    as: 'user',
-                    attributes: ['username']
-                },
+            include: [
                 {
                     model: Comment,
                     as:'comment',
                     attributes: ['id', 'comment_text', 'post_id', 'user_id'],
+                    include:{
+                        model: User,
+                        attributes:['username'],
+                    },
                     
-                }
+                },
+                {
+                    model: User,
+                    as:'user',
+                    attributes: ['username']
+                },
             ]
         })
         .then(dbPostData => {

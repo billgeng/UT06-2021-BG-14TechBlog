@@ -6,19 +6,25 @@ const router = require('express').Router();
 
 router.get('/',(req,res) =>{
     Post.findAll ({
-     attributes: ['id','title','content'],
+     attributes: ['id','title','content','user_id'],
      include: [
-         {
-             model: User,
-             as : 'user',
-             attributes: ['username'],
-         },
+        
          {
              model: Comment,
              as: 'comment',
              attributes: ['id','comment_text','post_id','user_id'],
-             
-         }
+             include:{
+                model: User,
+                as:'user',
+                attributes: ['username']
+            },
+            
+         },
+         {
+            model: User,
+            as:'user',
+            attributes: ['username']
+        },
      ]
     }) .then((postData) =>{
         const posts = postData.map(post => post.get({ plain: true }));
@@ -48,13 +54,19 @@ router.get('/post/:id',(req,res)=>{
         attributes:[
             'id',
             'content',
-            'title'
+            'title',
+            'user_id'
         ],
         include:[
             {
                 model: Comment,
                 as:'comment',
                 attributes:['id','comment_text','post_id','user_id'],
+                include:{
+                    model: User,
+                    as:'user',
+                    attributes: ['username']
+                },
                 
             },
             {
@@ -86,13 +98,18 @@ router.get('/post-comments',(req,res)=>{
         attributes:[
             'id',
             'content',
-            'title'
+            'title','user_id'
         ],
         include:[
             {
                 model: Comment,
                 as: 'comment',
                 attributes:['id','comment_text','post_id','user_id'],
+                include:{
+                    model: User,
+                    as:'user',
+                    attributes: ['username']
+                },
                 
             },
             {

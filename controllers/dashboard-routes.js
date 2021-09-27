@@ -4,18 +4,21 @@ const { User,Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 router.get('/', withAuth, (req, res) => {
     Post.findAll({
-            where: {
-                user_id: req.session.user_id
-            },
             attributes: [
                 'id',
                 'title',
-                'content'
+                'content',
+                'user_id'
             ],
             include: [{
                     model: Comment,
                     as:'comment',
                     attributes: ['id', 'comment_text', 'post_id', 'user_id'],
+                    include:{
+                        model: User,
+                        as:'user',
+                        attributes: ['username']
+                    },
                     
                 },
                 {
@@ -41,7 +44,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
             },
             attributes: ['id',
                 'title',
-                'content'
+                'content','user_id'
             ],
             include: [{
                     model: User,
@@ -52,6 +55,11 @@ router.get('/edit/:id', withAuth, (req, res) => {
                     model: Comment,
                     as:'comment',
                     attributes: ['id', 'comment_text', 'post_id', 'user_id'],
+                    include:{
+                        model: User,
+                        as:'user',
+                        attributes: ['username']
+                    },
                     
                 }
             ]
