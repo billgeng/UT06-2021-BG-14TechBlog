@@ -1,8 +1,18 @@
 const router = require('express').Router();
 const { User, Post ,Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
+
 router.get('/', (req, res) => {
-    Comment.findAll({})
+    Comment.findAll({
+        attributes:['id','comment_text','user_id','post_id'],
+        include: [
+            {
+                model: User,
+                as:'user',
+                attributes:['username'],
+            },
+        ],
+    })
         .then(dbCommentData => res.json(dbCommentData))
         .catch(err => {
             console.log(err);
@@ -11,10 +21,18 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    Comment.findAll({
+    Comment.findOne({
             where: {
                 id: req.params.id
-            }
+            },
+            attributes:['id','comment_text','user_id','post_id'],
+            include:[
+                {
+                    model: User,
+                    as: 'user',
+                    attributes:['username'],
+                },
+            ],
         })
         .then(dbCommentData => res.json(dbCommentData))
         .catch(err => {
@@ -24,8 +42,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', withAuth, (req, res) => {
-    if (req.session) {
-        Comment.create({
+      Comment.create({
                 comment_text: req.body.comment_text,
                 post_id: req.body.post_id,
                 user_id: req.session.user_id,
@@ -35,7 +52,7 @@ router.post('/', withAuth, (req, res) => {
                 console.log(err);
                 res.status(400).json(err);
             })
-    }
+    
 });
 
 router.put('/:id', withAuth, (req, res) => {
@@ -73,4 +90,5 @@ router.delete('/:id', withAuth, (req, res) => {
         res.status(500).json(err);
     });
 });
+
 module.exports = router;
