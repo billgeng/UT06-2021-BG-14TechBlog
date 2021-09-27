@@ -6,13 +6,13 @@ const router = require('express').Router();
 
 router.get('/',(req,res) =>{
     Post.findAll ({
-     attributes: ['id','title','content','created_at'],
+     attributes: ['id','title','content','user_id'],
      include: [
         
          {
              model: Comment,
              as: 'comment',
-             attributes: ['id','comment_text','post_id','user_id','created_at'],
+             attributes: ['id','comment_text','post_id','user_id'],
              include:{
                 model: User,
                 as:'user',
@@ -44,7 +44,7 @@ router.get('/login',(req, res)=>{
     res.render('login');
 });
 
-router.get('signup',(req,res)=>{
+router.get('/signup',(req,res)=>{
     res.render('signup');
 });
 
@@ -55,13 +55,13 @@ router.get('/post/:id',(req,res)=>{
             'id',
             'content',
             'title',
-            'created_at'
+            'user_id'
         ],
         include:[
             {
                 model: Comment,
                 as:'comment',
-                attributes:['id','comment_text','post_id','user_id','created_at'],
+                attributes:['id','comment_text','post_id','user_id'],
                 include:{
                     model: User,
                     as:'user',
