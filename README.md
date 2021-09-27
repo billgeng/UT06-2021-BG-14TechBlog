@@ -63,8 +63,6 @@ express,express-handlebars,MySql2,Sequelize,dotenv,bcrypt,express-session,connec
 
 npm i,mysql-u root-p,npm run seed,npm run start
 
-![alt text](./assets/images/Screenshot-proreadme.png)
-
 ## Badges
 
 ![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
