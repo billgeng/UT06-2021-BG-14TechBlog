@@ -3,33 +3,35 @@
   "version": "1.0.0",
   "description": "14. Model-View-Controller (MVC) Challenge: Tech Blog",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/billgeng/UT06-2021-BG-14TechBlog.git"
-  },
-  "keywords": [],
-  "author": "Bill Geng",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/billgeng/UT06-2021-BG-14TechBlog/issues"
-  },
-  "homepage": "https://github.com/billgeng/UT06-2021-BG-14TechBlog#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "connect-session-sequelize": "^7.1.2",
     "dotenv": "^10.0.0",
-    "express": "^4.17.1",
     "express-handlebars": "^5.3.4",
+    "express": "^4.17.1",
     "express-session": "^1.17.2",
     "handlebars": "^4.7.7",
+    "jest": "^27.2.3",
     "lodash": "^4.17.21",
     "mysql2": "^2.3.0",
     "path": "^0.12.7",
     "sequelize": "^6.6.5",
     "session": "^0.1.0"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js",
+    "seed" : "node seeds/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/billgeng/UT06-2021-BG-14TechBlog.git"
+  },
+  "author": "Bill Geng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/billgeng/UT06-2021-BG-14TechBlog/issues"
+  },
+  "homepage": "https://github.com/billgeng/UT06-2021-BG-14TechBlog#readme"
 }
