@@ -11,7 +11,6 @@ router.get('/',(req,res) =>{
         
          {
              model: Comment,
-             as: 'comment',
              attributes: ['id','comment_text','post_id','user_id'],
              include:{
                 model: User,
@@ -60,7 +59,6 @@ router.get('/post/:id',(req,res)=>{
         include:[
             {
                 model: Comment,
-                as:'comment',
                 attributes:['id','comment_text','post_id','user_id'],
                 include:{
                     model: User,

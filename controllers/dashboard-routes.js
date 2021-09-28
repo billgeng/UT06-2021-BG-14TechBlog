@@ -16,7 +16,7 @@ router.get('/', withAuth, (req, res) => {
             ],
             include: [{
                     model: Comment,
-                    as:'comment',
+                    
                     attributes: ['id', 'comment_text', 'post_id', 'user_id'],
                     include:{
                         model: User,
@@ -57,7 +57,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
                 },
                 {
                     model: Comment,
-                    as:'comment',
+                    
                     attributes: ['id', 'comment_text', 'post_id', 'user_id'],
                     include:{
                         model: User,
